@@ -2,6 +2,11 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+
+function color(selected) {
+    selected.style.backgroundColor = colorSelected;
+    selected.classList.add("color")
+}
 //Add a row
 function addR() {
     var grid = document.getElementById("grid");
@@ -9,8 +14,9 @@ function addR() {
 
     for (var i=0; i < numCols; i++) {
         var newCell = row.insertCell(i);
-
+        newCell.addEventListener('click', () => color(newCell));
 	}
+    
     numRows++;
     alert("Clicked Add Row")
 }
@@ -18,9 +24,10 @@ function addR() {
 //Add a column
 function addC() {
     var grid = document.getElementById("grid");
-
+    
 	for (var i=0; i < grid.rows.length; i++) {
 		var newCell = grid.rows[i].insertCell(-1);
+        newCell.addEventListener('click', () => color(newCell));
 	}
     numCols++;
     alert("Clicked Add Col")
